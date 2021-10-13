@@ -5,18 +5,6 @@ dotenv.config();
 const app = express();
 
 app.get("/", (req, res) => {
-  //   fs.readdir("C:Program Files", (err, data) => {
-  //     if (err) console.log(`Error: ${err.message}`);
-  //     res.send(
-  //       data
-  //         .map((obj) => {
-  //           return obj.includes(".")
-  //             ? `<div style={"text-align:center"}>💾${obj}</div>`
-  //             : `<div style={"text-align:center"}>📁${obj}</div>`;
-  //         })
-  //         .join(" ")
-  //     );
-  //   });
   fs.readdir("C:\\program Files", (err, data) => {
     if (err) {
       console.log(`Error: ${err.message}`);
@@ -34,7 +22,14 @@ app.get("/", (req, res) => {
     );
   });
 });
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, "127.0.0.1", (err) =>
-  console.log(`The server is looking for request at Port: ${PORT}`)
-);
+const PORT = process.env.PORT || 3000;
+const loadApp = () => {
+  try {
+    app.listen(PORT, (err) =>
+      console.log(`The server is looking for request at Port: ${PORT}`)
+    );
+  } catch (error) {
+    if (error) console.log(`Error:${error.message}`);
+  }
+};
+loadApp();
